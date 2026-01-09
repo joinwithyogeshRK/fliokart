@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, Plus, Minus, Trash2, ShoppingCart } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -11,7 +11,7 @@ import { CartItem } from "./Index";
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
-
+const navigate = useNavigate()
   // Load cart items from localStorage on component mount
   useEffect(() => {
     const loadCartItems = () => {
@@ -79,6 +79,9 @@ const CartPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <Navbar cartItemsCount={getTotalItems()} onCartClick={() => {}} />
+        <div>
+<button onClick={() => navigate('/test')}>test button</button>
+        </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div
