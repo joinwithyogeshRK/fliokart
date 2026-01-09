@@ -29,7 +29,7 @@ const ProductDetail = () => {
     },
     {
       id: 2,
-      name: "Smart Fitness Watch",
+      name: "Smart Fitness Watc",
       price: 1999,
       originalPrice: 3499,
       image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=600&h=600&fit=crop",
