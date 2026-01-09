@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ShoppingCart } from "lucide-react";
 import Navbar from "../components/Navbar";
@@ -13,6 +13,7 @@ const ProductDetail = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
 
+  const navigate = useNavigate()
   // Mock product data - in real app, this would come from API
   const products: Product[] = [
     {
@@ -76,8 +77,11 @@ const ProductDetail = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+      <div>
+        <button onClick={() => navigate("/test")}>test button</button>
+      </div>
       <Navbar cartItemsCount={0} onCartClick={() => {}} />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -120,8 +124,8 @@ const ProductDetail = () => {
                   onClick={() => setSelectedImage(index)}
                   className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
                     selectedImage === index
-                      ? 'border-blue-500 shadow-lg shadow-blue-500/50'
-                      : 'border-gray-600 hover:border-gray-500'
+                      ? "border-blue-500 shadow-lg shadow-blue-500/50"
+                      : "border-gray-600 hover:border-gray-500"
                   }`}
                 >
                   <img
@@ -142,7 +146,7 @@ const ProductDetail = () => {
             className="space-y-6"
           >
             <div>
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
@@ -150,7 +154,7 @@ const ProductDetail = () => {
               >
                 {product.name}
               </motion.h1>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
@@ -159,49 +163,70 @@ const ProductDetail = () => {
                 <div className="flex items-center">
                   <div className="flex text-yellow-400">
                     {[...Array(5)].map((_, i) => (
-                      <motion.span 
+                      <motion.span
                         key={i}
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.6 + i * 0.1 }}
-                        className={i < Math.floor(product.rating) ? 'text-yellow-400' : 'text-gray-600'}
+                        className={
+                          i < Math.floor(product.rating)
+                            ? "text-yellow-400"
+                            : "text-gray-600"
+                        }
                       >
                         ★
                       </motion.span>
                     ))}
                   </div>
-                  <span className="text-gray-400 ml-2">({product.reviews} reviews)</span>
+                  <span className="text-gray-400 ml-2">
+                    ({product.reviews} reviews)
+                  </span>
                 </div>
               </motion.div>
             </div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
               className="space-y-2"
             >
               <div className="flex items-baseline space-x-4">
-                <span className="text-3xl font-bold text-white">₹{product.price}</span>
-                <span className="text-xl text-gray-500 line-through">₹{product.originalPrice}</span>
+                <span className="text-3xl font-bold text-white">
+                  ₹{product.price}
+                </span>
+                <span className="text-xl text-gray-500 line-through">
+                  ₹{product.originalPrice}
+                </span>
                 <span className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                  {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                  {Math.round(
+                    ((product.originalPrice - product.price) /
+                      product.originalPrice) *
+                      100
+                  )}
+                  % OFF
                 </span>
               </div>
-              <p className="text-green-400 font-semibold">You save ₹{product.originalPrice - product.price}!</p>
+              <p className="text-green-400 font-semibold">
+                You save ₹{product.originalPrice - product.price}!
+              </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
               className="bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-xl border border-gray-700"
             >
-              <h3 className="text-white font-semibold mb-3">Product Description</h3>
-              <p className="text-gray-300 leading-relaxed">{product.description}</p>
+              <h3 className="text-white font-semibold mb-3">
+                Product Description
+              </h3>
+              <p className="text-gray-300 leading-relaxed">
+                {product.description}
+              </p>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2 }}
@@ -218,7 +243,7 @@ const ProductDetail = () => {
               </ul>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.5 }}
@@ -243,7 +268,7 @@ const ProductDetail = () => {
               </motion.button>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.8 }}
@@ -251,7 +276,9 @@ const ProductDetail = () => {
             >
               <div className="flex items-center space-x-2 mb-2">
                 <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                <span className="text-green-300 font-semibold">Special Offers</span>
+                <span className="text-green-300 font-semibold">
+                  Special Offers
+                </span>
               </div>
               <ul className="text-green-200 text-sm space-y-1">
                 <li>• Free delivery on orders above ₹499</li>
@@ -264,7 +291,7 @@ const ProductDetail = () => {
       </div>
 
       <Footer />
-      
+
       <PaymentModal
         isOpen={isPaymentModalOpen}
         onClose={() => setIsPaymentModalOpen(false)}

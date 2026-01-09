@@ -78,11 +78,11 @@ const navigate = useNavigate()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+      <div>
+        <button onClick={() => navigate("/test")}>test button</button>
+      </div>
       <Navbar cartItemsCount={getTotalItems()} onCartClick={() => {}} />
-        <div>
-<button onClick={() => navigate('/test')}>test button</button>
-        </div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -96,7 +96,9 @@ const navigate = useNavigate()
             <ArrowLeft className="h-4 w-4 mr-2" />
             Continue Shopping
           </Link>
-          <h1 className="text-3xl font-bold text-white">Shopping Cart ({getTotalItems()} items)</h1>
+          <h1 className="text-3xl font-bold text-white">
+            Shopping Cart ({getTotalItems()} items)
+          </h1>
         </motion.div>
 
         {cartItems.length === 0 ? (
@@ -106,8 +108,12 @@ const navigate = useNavigate()
             className="text-center py-16"
           >
             <ShoppingCart className="mx-auto h-24 w-24 text-gray-600 mb-4" />
-            <h2 className="text-2xl font-bold text-white mb-2">Your cart is empty</h2>
-            <p className="text-gray-400 mb-6">Add some products to get started!</p>
+            <h2 className="text-2xl font-bold text-white mb-2">
+              Your cart is empty
+            </h2>
+            <p className="text-gray-400 mb-6">
+              Add some products to get started!
+            </p>
             <Link
               to="/"
               className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -135,33 +141,45 @@ const navigate = useNavigate()
                       className="w-24 h-24 object-cover rounded-lg"
                     />
                     <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-white mb-2">{item.name}</h3>
+                      <h3 className="text-xl font-semibold text-white mb-2">
+                        {item.name}
+                      </h3>
                       <div className="flex items-center space-x-4 mb-4">
-                        <span className="text-2xl font-bold text-blue-400">₹{item.price}</span>
-                        <span className="text-gray-500 line-through">₹{item.originalPrice}</span>
+                        <span className="text-2xl font-bold text-blue-400">
+                          ₹{item.price}
+                        </span>
+                        <span className="text-gray-500 line-through">
+                          ₹{item.originalPrice}
+                        </span>
                       </div>
-                      
+
                       <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-3">
                           <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
+                            onClick={() =>
+                              handleUpdateQuantity(item.id, item.quantity - 1)
+                            }
                             className="bg-gray-700 hover:bg-gray-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors"
                           >
                             <Minus className="h-4 w-4" />
                           </motion.button>
-                          <span className="text-white text-xl font-semibold px-4">{item.quantity}</span>
+                          <span className="text-white text-xl font-semibold px-4">
+                            {item.quantity}
+                          </span>
                           <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
+                            onClick={() =>
+                              handleUpdateQuantity(item.id, item.quantity + 1)
+                            }
                             className="bg-gray-700 hover:bg-gray-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-colors"
                           >
                             <Plus className="h-4 w-4" />
                           </motion.button>
                         </div>
-                        
+
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
@@ -183,8 +201,10 @@ const navigate = useNavigate()
               animate={{ opacity: 1, x: 0 }}
               className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700 shadow-lg h-fit sticky top-8"
             >
-              <h2 className="text-2xl font-bold text-white mb-6">Order Summary</h2>
-              
+              <h2 className="text-2xl font-bold text-white mb-6">
+                Order Summary
+              </h2>
+
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between text-gray-300">
                   <span>Subtotal ({getTotalItems()} items)</span>
@@ -224,7 +244,7 @@ const navigate = useNavigate()
       </div>
 
       <Footer />
-      
+
       <PaymentModal
         isOpen={isPaymentModalOpen}
         onClose={() => setIsPaymentModalOpen(false)}
