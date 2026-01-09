@@ -17,7 +17,7 @@ const ProductDetail = () => {
   const products: Product[] = [
     {
       id: 1,
-      name: "Premium Wireless Headphones",
+      name: "any",
       price: 2999,
       originalPrice: 4999,
       image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=600&h=600&fit=crop",
@@ -29,7 +29,7 @@ const ProductDetail = () => {
     },
     {
       id: 2,
-      name: "Smart Fitness Watc",
+      name: "any",
       price: 1999,
       originalPrice: 3499,
       image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?w=600&h=600&fit=crop",
